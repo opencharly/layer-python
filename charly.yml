@@ -1,7 +1,5 @@
-version: 2026.232.0520
 python:
     candy:
-        version: 2026.243.0100
         description: |
             A CPython 3.13 interpreter provided as a pixi-managed conda-forge environment.
             The python candy ships a pixi.toml that pins python >=3.13,<3.14 from
