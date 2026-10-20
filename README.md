@@ -38,9 +38,15 @@ Then, inside the built image (or on a dev host):
 ~/.pixi/envs/default/bin/python -c "import sys, json, sqlite3; print(sys.version_info.major, sys.version_info.minor)"
 ```
 
-The candy's `plan:` asserts the interpreter exists at the fixed path, reports a
-CPython 3.13 version, and executes a standard-library snippet including the
-`sqlite3` C extension.
+The candy's `plan:` asserts the interpreter exists at the fixed path, is a CPython at
+or above the supported floor (3.11), and executes a standard-library snippet including
+the `sqlite3` C extension.
+
+The exact minor is **not** asserted, on purpose: an image's pixi environment belongs to
+whichever candy ships the `pixi.toml` it is built from, so a consumer may legitimately
+pin a different minor than this layer's 3.13 default — `open-webui`, for one, requires
+`<3.13`, so its image runs 3.12. An image that needs a specific version asserts it in
+its own `plan:`.
 
 ## Package management
 
